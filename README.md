@@ -1,4 +1,5 @@
 Install the virtual environment library:
+
 `pip3 install virtualenv`
 
 Activate the environment:
@@ -6,4 +7,5 @@ Activate the environment:
 - `env\Scripts\activate.bat` (Windows)
 
 Install requirements:
+
 `pip3 install -r requirements.txt`
