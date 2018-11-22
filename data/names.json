@@ -116,16 +116,16 @@
     },
     "mauricio": {
         "name": "Mauricio Cerda",
-        "company": "Melón",
+        "company": "Cementos Melón",
         "sentence": "Espero que el viaje desde Chile no haya sido muy largo."
     },
     "claudia": {
-        "name": "Claudia Davila",
+        "name": "Claudia Dávila",
         "company": "RIMAC",
         "sentence": "Espero que Tobi y Lara se lleven bien como hermanos."
     },
     "alexandra": {
-        "name": "Alexandra Espichan",
+        "name": "Alexandra Espichán",
         "company": "RIMAC",
         "sentence": "¿Todo va a estar bien? Espero que termines tu proyecto."
     },
@@ -140,7 +140,7 @@
         "sentence": "Espero que hayas disfrutado tus vacaciones."
     },
     "ricardito": {
-        "name": "Ricardo Quiroz",
+        "name": "Ricardo Quirós",
         "company": "RIMAC",
         "sentence": "Espero que sigas representando al Perú en competencias internacionales."
     },
