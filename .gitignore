@@ -6,3 +6,11 @@ env
 
 # binaries
 *.mp3
+
+# models
+src/FaceClassifier/pre_model/*
+!src/FaceClassifier/pre_model/.gitkeep 
+
+# temp
+*.pyc
+__pycache__

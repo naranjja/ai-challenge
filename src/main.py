@@ -5,20 +5,17 @@ import datetime
 import logging
 import pygame
 
+try:
+    from FaceClassifier.detect_in_image import *
+except ModuleNotFoundError:
+    from src.FaceClassifier.detect_in_image import *
+
 
 def find_face():
     logging.info("\n- Finding face...")
     # TODO
     logging.info("- Face found correctly.")
-    return None  # testing
-
-
-def classify_face(face):
-    logging.info("\n- Classifying face...")
-    # TODO
-    _id = "rodrigo"
-    logging.info(f"- Found: {_id}")
-    return _id  # testing
+    return "./FaceClassifier/xdd.jpg"  # testing
 
 
 def get_time_of_day():
