@@ -14,8 +14,10 @@ def get_time_of_day():
 
 
 def build_sentence(info):
-    if info:
+    if info and info.get("company"):
         return "¡{} {name}! ¿Cómo está {company}? {sentence}".format(get_time_of_day(), **info)
+    elif info:
+        return "¡{} {name}! {sentence}".format(get_time_of_day(), **info)
     else:
         return "¡{} persona desconocida! No te he podido reconocer correctamente.".format(get_time_of_day())
 
@@ -38,7 +40,7 @@ def main():
     names = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
 
     # TODO: classify and return _id as key from dict of names
-    _id = "joses"
+    _id = "jose"
 
     info = None
     try: info = names[_id]
