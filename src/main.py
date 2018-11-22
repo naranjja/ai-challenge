@@ -48,8 +48,9 @@ def play_audio(_id):
 
 def main():
     people = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
+    camera_index = 1  # 0: built-in, 1: external
 
-    head = find_head()
+    head = find_head(camera_index)
     _id = classify_face(head)
 
     info = None

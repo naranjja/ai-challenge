@@ -66,8 +66,7 @@ def maximum_area(image_original, boxes):
 	return areas
 	
 
-def camera_thread():
-	camera_index = 0  # 0: built-in, 1: external
+def camera_thread(camera_index):
 	cap = cv2.VideoCapture(camera_index)
 	while True:
 		is_correctly_setup, frame = cap.read()  # get next frame
@@ -86,7 +85,7 @@ def camera_thread():
 			break
 
 
-def find_head():
+def find_head(camera_index):
 	logging.info("\n- Finding heads...")
 
 	try:
@@ -99,7 +98,7 @@ def find_head():
 	should_camera_stop = True
 
 	yolo = yolo_initialization()
-	t = threading.Thread(target=camera_thread)
+	t = threading.Thread(target=lambda: camera_thread(camera_index))
 	t.start()
 
 	found_head = False
@@ -118,7 +117,7 @@ def find_head():
 				logging.debug("No head found.")
 			
 			logging.debug("Area de foto:", areas[box_index])
-			if areas[box_index] < 142 ** 2:
+			if areas[box_index] < 140 ** 2:
 				logging.debug("Face too small.")
 				continue
 
@@ -149,5 +148,6 @@ def find_head():
 
 if __name__ == "__main__":
 	logging.basicConfig(level=logging.INFO, format="%(message)s")
-	result = find_head()
+	camera_index = 0  # 0: built-in, 1: external
+	result = find_head(camera_index)
 	logging.info(result)
