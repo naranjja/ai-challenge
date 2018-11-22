@@ -2,12 +2,12 @@
     "melero": {
         "name": "Jorge Melero",
         "company": "Intursa",
-        "sentence": "Espero que nuestros hoteles estén siempre llenos de huéspedes."
+        "sentence": "Espero que nuestros hoteles estén siempre llenos de personas."
     },
     "fernando": {
         "name": "Fernando Ríos",
         "company": "RIMAC",
-        "sentence": "Espero que este año crezcamos más que el año pasado."
+        "sentence": "Espero que sigamos creciendo y cuidando a los peruanos como siempre."
     },
     "rodrigo": {
         "name": "Rodrigo Mejía",
@@ -20,7 +20,7 @@
         "sentence": "Espero que nuestros clientes estén siempre satisfechos con nuestro trabajo."
     },
     "gianflavio": {
-        "name": "Gianflavio Carozzi",
+        "name": "Gianflavio Carosi",
         "company": "AESA",
         "sentence": "Espero que sigamos siendo líderes en servicios de infrastructura y minería."
     },

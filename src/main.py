@@ -16,7 +16,7 @@ def find_face():
 def classify_face(face):
     logging.info("\n- Classifying face...")
     # TODO
-    _id = "diegol"
+    _id = "rodrigo"
     logging.info(f"- Found: {_id}")
     return _id  # testing
 
