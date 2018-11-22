@@ -1,8 +1,23 @@
 import time
 import json
 import gtts
+import datetime
 import logging
 import pygame
+
+
+def get_time_of_day():
+    hour = datetime.datetime.now().hour
+    if hour >= 5 and hour < 13: return "Buenos días"
+    if hour >= 13 and hour < 19: return "Buenas tardes"
+    return "Buenas noches"
+
+
+def build_sentence(info):
+    if info:
+        return "¡{} {name}! ¿Cómo está {company}? {sentence}".format(get_time_of_day(), **info)
+    else:
+        return "¡{} persona desconocida! No te he podido reconocer correctamente.".format(get_time_of_day())
 
 
 def save_audio(_id, sentence, spain=False):
@@ -16,21 +31,22 @@ def play_audio(_id):
     pygame.mixer.init()
     pygame.mixer.music.load(f"./../data/greetings/{_id}.mp3")
     pygame.mixer.music.play()
-    time.sleep(10)
+    time.sleep(15)
 
 
 def main():
     names = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
-    
-    # TODO: classify
-    _id = "jose"
 
+    # TODO: classify and return _id as key from dict of names
+    _id = "joses"
+
+    info = None
     try: info = names[_id]
     except KeyError: 
         logging.error("Face didn't match something that we know.")
-        return
+        _id = "unknown"
 
-    sentence = info.get("sentence")
+    sentence = build_sentence(info)
     
     if _id == "melero": save_audio(_id, sentence, spain=True)
     else: save_audio(_id, sentence)
