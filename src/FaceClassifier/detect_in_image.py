@@ -145,4 +145,4 @@ def classify_face(face):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    classify_face("./xdd.jpg")
+    classify_face("./jenny-100.JPG")
