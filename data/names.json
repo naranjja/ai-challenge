@@ -1,99 +1,162 @@
 {
     "melero": {
-        "name": "Jorge Melero"
+        "name": "Jorge Melero",
+        "company": "INTURSA",
+        "sentence": ""
     },
     "fernando": {
-        "name": "Fernando Rios"
+        "name": "Fernando Rios",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "rodrigo": {
-        "name": "Rodrigo Mejia"
+        "name": "Rodrigo Mejia",
+        "company": "QROMA",
+        "sentence": ""
     },
     "matuk": {
-        "name": "Mario Matuk"
+        "name": "Mario Matuk",
+        "company": "EXSA",
+        "sentence": ""
     },
     "gianflavio": {
-        "name": "Gianflavio Carozzi"
+        "name": "Gianflavio Carozzi",
+        "company": "MINSUR",
+        "sentence": ""
     },
     "dereck": {
-        "name": "Dereck Forsyth"
+        "name": "Dereck Forsyth",
+        "company": "TASA",
+        "sentence": ""
     },
     "alex": {
-        "name": "Alex Fort"
+        "name": "Alex Fort",
+        "company": null,
+        "sentence": ""
     },
     "mario": {
-        "name": "Mario Brescia"
+        "name": "Mario Brescia",
+        "company": null,
+        "sentence": ""
     },
     "fortunato": {
-        "name": "Fortunato Brescia"
+        "name": "Fortunato Brescia",
+        "company": null,
+        "sentence": ""
     },
     "pedro": {
-        "name": "Pedro Brescia"
+        "name": "Pedro Brescia",
+        "company": null,
+        "sentence": ""
     },
     "jaime": {
-        "name": "Jaime Araoz"
+        "name": "Jaime Araoz",
+        "company": "Corporación BRECA",
+        "sentence": ""
     },
     "alvaro": {
-        "name": "Alvaro Delgado-Aparicio"
+        "name": "Alvaro Delgado-Aparicio",
+        "company": "BREIN",
+        "sentence": ""
     },
     "cinthia": {
-        "name": "Cinthia Wicht"
+        "name": "Cinthia Wicht",
+        "company": "BREIN",
+        "sentence": ""
     },
     "carlos": {
-        "name": "Carlos Gamero"
+        "name": "Carlos Gamero",
+        "company": "BREIN",
+        "sentence": ""
     },
     "miguel": {
-        "name": "Miguel Paredes"
+        "name": "Miguel Paredes",
+        "company": "RIMAC Seguros",
+        "sentence": "Espero que ahora que estás en Rimac todavía nos visites."
     },
     "jose": {
         "name": "Jose Naranjo",
-        "sentence": "¡Buenas tardes Jose! Espero que todo te esté yendo bien con tus chatbots."
+        "company": "BREIN",
+        "sentence": "Espero que todo te esté yendo bien con tus chatbots."
     },
     "jenny": {
-        "name": "Jenny Vega"
+        "name": "Jenny Vega",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "christian": {
-        "name": "Christian Fonseca"
+        "name": "Christian Fonseca",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "anapaula": {
-        "name": "Ana Paula Rojas"
+        "name": "Ana Paula Rojas",
+        "company": "BREIN",
+        "sentence": ""
     },
     "frizzi": {
-        "name": "Frizzi San Roman"
+        "name": "Frizzi San Roman",
+        "company": "BREIN",
+        "sentence": ""
     },
     "antonio": {
-        "name": "Antonio Ordonez"
+        "name": "Antonio Ordonez",
+        "company": "BREIN",
+        "sentence": ""
     },
     "manuel": {
-        "name": "Manuel Perez"
+        "name": "Manuel Perez",
+        "company": "BREIN",
+        "sentence": ""
     },
     "angel": {
-        "name": "Angel Mendez"
+        "name": "Angel Mendez",
+        "company": "BREIN",
+        "sentence": ""
     },
     "mauricio": {
-        "name": "Mauricio Cerda"
+        "name": "Mauricio Cerda",
+        "company": "Melón",
+        "sentence": ""
     },
     "claudia": {
-        "name": "Claudia Davila"
+        "name": "Claudia Davila",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "alexandra": {
-        "name": "Alexandra Espichan"
+        "name": "Alexandra Espichan",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "kike": {
-        "name": "Jorge Enrique Vicente"
+        "name": "Jorge Enrique Vicente",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "diegol": {
-        "name": "Diego Mendoza"
+        "name": "Diego Mendoza",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "ricardito": {
-        "name": "Ricardo Quiroz"
+        "name": "Ricardo Quiroz",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "ana": {
-        "name": "Ana Alvarado"
+        "name": "Ana Alvarado",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "puma": {
-        "name": "Ricardo Puma"
+        "name": "Ricardo Puma",
+        "company": "RIMAC Seguros",
+        "sentence": ""
     },
     "luis": {
-        "name": "Luis Ramirez"
+        "name": "Luis Ramirez",
+        "company": "TASA",
+        "sentence": ""
     }
 }

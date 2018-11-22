@@ -3,3 +3,6 @@
 
 # environment
 env
+
+# binaries
+*.mp3
