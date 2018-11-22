@@ -6,6 +6,21 @@ import logging
 import pygame
 
 
+def find_face():
+    logging.info("\n- Finding face...")
+    # TODO
+    logging.info("- Face found correctly.")
+    return None  # testing
+
+
+def classify_face(face):
+    logging.info("\n- Classifying face...")
+    # TODO
+    _id = "frizzi"
+    logging.info(f"- Found: {_id}")
+    return _id  # testing
+
+
 def get_time_of_day():
     hour = datetime.datetime.now().hour
     if hour >= 5 and hour < 13: return "Buenos días"
@@ -23,24 +38,31 @@ def build_sentence(info):
 
 
 def save_audio(_id, sentence, spain=False):
+    logging.info("\n- Making audio clip from text...")
     lang = "es-ES" if spain else "es-us"
     try: gtts.gTTS(text=sentence, lang=lang).save(f"./../data/greetings/{_id}.mp3")
-    except: return False
+    except Exception as e:
+        logging.error("An exception occurred when trying to save audio.")
+        logging.error(e) 
+        return False
+    logging.info("- Audio clip saved correctly.")
     return True
 
-
+    logging.getLogger(pygame.__name__).setLevel(logging.ERROR)
 def play_audio(_id):
+    logging.info("\n- Playing...")
     pygame.mixer.init()
     pygame.mixer.music.load(f"./../data/greetings/{_id}.mp3")
     pygame.mixer.music.play()
     time.sleep(15)
+    logging.info("- Finished playing.")
 
 
 def main():
     names = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
 
-    # TODO: classify and return _id as key from dict of names
-    _id = "anapaula"
+    face = find_face()
+    _id = classify_face(face)
 
     info = None
     try: info = names[_id]
@@ -57,4 +79,5 @@ def main():
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     main()
