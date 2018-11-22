@@ -89,8 +89,11 @@ def camera_thread():
 def find_head():
 	logging.info("\n- Finding heads...")
 
-	os.unlink(image_path)
-	os.unlink(output_path)
+	try:
+		os.unlink(image_path)
+		os.unlink(output_path)
+	except FileNotFoundError:
+		pass
 
 	global should_camera_stop
 	should_camera_stop = True

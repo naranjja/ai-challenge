@@ -136,7 +136,9 @@ def classify_face(face):
                                         1, (0, 0, 255), thickness=1, lineType=4)
                             # cv2.putText(frame, str, ("", text_fps_y),cv2.FONT_HERSHEY_COMPLEX_SMALL, 
                             #             1, (0, 0, 0), thickness=1, lineType=2)
-                            cv2.imwrite("output.jpg", frame)
+                            try: os.unlink("result.jpg")
+                            except FileNotFoundError: pass
+                            cv2.imwrite("result.jpg", frame)
                     try:
                         _id = names[val].lower()
                         logging.info(f"- Found: {_id}")
@@ -150,4 +152,4 @@ def classify_face(face):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO, format="%(message)s")
-    classify_face("./xdd.jpg")
+    classify_face("./test_face.jpg")
