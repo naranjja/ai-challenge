@@ -13,11 +13,8 @@ import math
 import pickle
 from sklearn.svm import SVC
 
-
 with tf.Graph().as_default():
-
     with tf.Session() as sess:
-
         datadir = './out_dir'
         dataset = facenet.get_dataset(datadir)
         paths, labels = facenet.get_image_paths_and_labels(dataset)

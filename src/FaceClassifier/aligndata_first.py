@@ -16,7 +16,7 @@ from time import sleep
 output_dir_path = './out_dir'
 output_dir = os.path.expanduser(output_dir_path)
 if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    os.makedirs(output_dir)
 
 datadir = './../../data/faces/'
 dataset = facenet.get_dataset(datadir)
@@ -61,7 +61,7 @@ with open(bounding_boxes_filename, "w") as text_file:
                 else:
                     if img.ndim < 2:
                         print('Unable to align "%s"' % image_path)
-                        text_file.write('%s\n' % (output_filename))
+                        text_file.write('%s\n' % output_filename)
                         continue
                     if img.ndim == 2:
                         img = facenet.to_rgb(img)
@@ -81,7 +81,8 @@ with open(bounding_boxes_filename, "w") as text_file:
                             offsets = np.vstack([(det[:, 0] + det[:, 2]) / 2 - img_center[1],
                                                  (det[:, 1] + det[:, 3]) / 2 - img_center[0]])
                             offset_dist_squared = np.sum(np.power(offsets, 2.0), 0)
-                            index = np.argmax(bounding_box_size - offset_dist_squared * 2.0)  # some extra weight on the centering
+                            index = np.argmax(
+                                bounding_box_size - offset_dist_squared * 2.0)  # some extra weight on the centering
                             det = det[index, :]
                         det = np.squeeze(det)
                         bb_temp = np.zeros(4, dtype=np.int32)
@@ -95,15 +96,12 @@ with open(bounding_boxes_filename, "w") as text_file:
                             scaled_temp = misc.imresize(cropped_temp, (image_size, image_size), interp='bilinear')
                             nrof_successfully_aligned += 1
                             misc.imsave(output_filename, scaled_temp)
-                        # text_file.write('%s %d %d %d %d\n' % (output_filename, bb_temp[0], bb_temp[1], bb_temp[2], bb_temp[3]))
+
                         except Exception as e:
                             os.remove(image_path)
                     else:
                         print('Unable to align "%s"' % image_path)
-                        text_file.write('%s\n' % (output_filename))
+                        text_file.write('%s\n' % output_filename)
 
 print('Total number of images: %d' % nrof_images_total)
 print('Number of successfully aligned images: %d' % nrof_successfully_aligned)
-
-
-
