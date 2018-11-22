@@ -40,7 +40,7 @@ def main():
     names = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
 
     # TODO: classify and return _id as key from dict of names
-    _id = "carlos"
+    _id = "anapaula"
 
     info = None
     try: info = names[_id]
