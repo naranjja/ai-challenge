@@ -127,7 +127,7 @@ def classify_face(face):
                     text_y = bb[i][3] + 20
                     #print("result: ", best_class_indices[0])
                     #print(best_class_indices)
-                    val = int(best_class_indices)
+                    val = int(best_class_indices[0])
                     for H_i in names:
                         #print(H_i)
                         if names[best_class_indices[0]] == H_i:
