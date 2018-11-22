@@ -102,13 +102,16 @@ def find_face():
 
 		if found_face:
 			logging.info(f"- Found a face!")
+			cap.release()  # kill capture
+			cv2.destroyAllWindows()  # kill windows
 			return output_path
 		
 		if cv2.waitKey(1) & 0xFF == ord("q"):  # if user wants to close
+			cap.release()  # kill capture
+			cv2.destroyAllWindows()  # kill windows
+			logging.warn("Process stopped.")
 			return
-
-	cap.release()  # kill capture
-	cv2.destroyAllWindows()  # kill windows
+	
 
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.INFO, format="%(message)s")
