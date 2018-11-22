@@ -15,3 +15,5 @@ src/FaceClassifier/pre_model/*
 # temp
 *.pyc
 __pycache__
+src/HeadDetector/img/*
+!src/HeadDetector/img/.gitkeep 

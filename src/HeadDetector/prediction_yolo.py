@@ -1,9 +1,11 @@
 import numpy as np
+import os
 import cv2
 import logging
 import json
 import operator
 import threading
+import time
 
 execution_path = None
 try:
@@ -19,9 +21,10 @@ except ModuleNotFoundError:
 
 
 
-config_path  = f'{execution_path}/config.json'
-weights_path = f'{execution_path}/model.h5'
-image_path   = f'{execution_path}/image_original.jpg'
+config_path  = f"{execution_path}/config.json"
+weights_path = f"{execution_path}/model.h5"
+image_path   = f"{execution_path}/img/original.jpg"
+output_path  = f"{execution_path}/img/output.jpg"
 
 def yolo_initialization():
 	with open(config_path) as f:	
@@ -32,11 +35,11 @@ def yolo_initialization():
 	#   Make the model 
 	###############################
 
-	yolo = YOLO(backend			 = config['model']['backend'],
-				input_size		  = config['model']['input_size'], 
-				labels			  = config['model']['labels'], 
-				max_box_per_image   = config['model']['max_box_per_image'],
-				anchors			 = config['model']['anchors'])
+	yolo = YOLO(backend			 = config["model"]["backend"],
+				input_size		  = config["model"]["input_size"], 
+				labels			  = config["model"]["labels"], 
+				max_box_per_image   = config["model"]["max_box_per_image"],
+				anchors			 = config["model"]["anchors"])
 
 	###############################
 	#   Load trained weights
@@ -86,6 +89,9 @@ def camera_thread():
 def find_head():
 	logging.info("\n- Finding heads...")
 
+	os.unlink(image_path)
+	os.unlink(output_path)
+
 	global should_camera_stop
 	should_camera_stop = True
 
@@ -98,7 +104,7 @@ def find_head():
 		try:
 			image_original = cv2.imread(image_path)
 			boxes = yolo.predict(image_original)
-			#image = draw_boxes(image_original, boxes, config['model']['labels'])
+			#image = draw_boxes(image_original, boxes, config["model"]["labels"])
 
 			areas = maximum_area(image_original, boxes)
 			try:
@@ -108,7 +114,7 @@ def find_head():
 			except:
 				logging.debug("No head found.")
 			
-			logging.debug('Area de foto:', areas[box_index])
+			logging.debug("Area de foto:", areas[box_index])
 			if areas[box_index] < 142 ** 2:
 				logging.debug("Face too small.")
 				continue
@@ -119,8 +125,6 @@ def find_head():
 			xmax = int(boxes[box_index].xmax*image_w)
 			ymax = int(boxes[box_index].ymax*image_h)
 			crop_img = image_original[ymin:ymax, xmin:xmax]
-
-			output_path = f"{execution_path}/output.jpg"
 			
 			if found_head:
 				logging.info(f"- Found a head!")
@@ -140,7 +144,7 @@ def find_head():
 			continue
 	
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	logging.basicConfig(level=logging.INFO, format="%(message)s")
 	result = find_head()
 	logging.info(result)
