@@ -1,6 +1,8 @@
+import time
 import json
 import gtts
 import logging
+import pygame
 
 
 def save_audio(_id, sentence, spain=False):
@@ -11,7 +13,10 @@ def save_audio(_id, sentence, spain=False):
 
 
 def play_audio(_id):
-    pass
+    pygame.mixer.init()
+    pygame.mixer.music.load(f"./../data/greetings/{_id}.mp3")
+    pygame.mixer.music.play()
+    time.sleep(10)
 
 
 def main():
