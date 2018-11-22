@@ -48,7 +48,7 @@ def save_audio(_id, sentence, spain=False):
     logging.info("- Audio clip saved correctly.")
     return True
 
-    logging.getLogger(pygame.__name__).setLevel(logging.ERROR)
+    
 def play_audio(_id):
     logging.info("\n- Playing...")
     pygame.mixer.init()
