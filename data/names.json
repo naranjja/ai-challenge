@@ -1,16 +1,16 @@
 {
     "melero": {
         "name": "Jorge Melero",
-        "company": "INTURSA",
-        "sentence": ""
+        "company": "Intursa",
+        "sentence": "Espero que este año mejoremos el pickup."
     },
     "fernando": {
-        "name": "Fernando Rios",
-        "company": "RIMAC Seguros",
+        "name": "Fernando Ríos",
+        "company": "RIMAC",
         "sentence": ""
     },
     "rodrigo": {
-        "name": "Rodrigo Mejia",
+        "name": "Rodrigo Mejía",
         "company": "QROMA",
         "sentence": ""
     },
@@ -50,7 +50,7 @@
         "sentence": ""
     },
     "jaime": {
-        "name": "Jaime Araoz",
+        "name": "Jaime Aráoz",
         "company": "Corporación BRECA",
         "sentence": ""
     },
@@ -67,11 +67,11 @@
     "carlos": {
         "name": "Carlos Gamero",
         "company": "BREIN",
-        "sentence": ""
+        "sentence": "Espero que todavía tengamos presupuesto para seguir funcionando."
     },
     "miguel": {
         "name": "Miguel Paredes",
-        "company": "RIMAC Seguros",
+        "company": "RIMAC",
         "sentence": "Espero que ahora que estás en Rimac todavía nos visites."
     },
     "jose": {
@@ -81,82 +81,82 @@
     },
     "jenny": {
         "name": "Jenny Vega",
-        "company": "RIMAC Seguros",
+        "company": "RIMAC",
         "sentence": ""
     },
     "christian": {
         "name": "Christian Fonseca",
-        "company": "RIMAC Seguros",
+        "company": "RIMAC",
         "sentence": ""
     },
     "anapaula": {
         "name": "Ana Paula Rojas",
         "company": "BREIN",
-        "sentence": ""
+        "sentence": "Espero que no te toque una pantalla azul el día de hoy."
     },
     "frizzi": {
-        "name": "Frizzi San Roman",
+        "name": "Frizzi San Román",
         "company": "BREIN",
-        "sentence": ""
+        "sentence": "Espero que tu algoritmo ayude a mejorar la protección de las personas."
     },
     "antonio": {
-        "name": "Antonio Ordonez",
+        "name": "Antonio Ordoñez",
         "company": "BREIN",
-        "sentence": ""
+        "sentence": "Espero que nunca te canses de hacer cubos de Rubiks."
     },
     "manuel": {
-        "name": "Manuel Perez",
+        "name": "Manuel Pérez",
         "company": "BREIN",
-        "sentence": ""
+        "sentence": "Espero que uses el block chain de manera responsable."
     },
     "angel": {
-        "name": "Angel Mendez",
-        "company": "BREIN",
-        "sentence": ""
+        "name": "Ángel Mendez",
+        "company": "Intursa",
+        "sentence": "Espero que la fusión con Márriot termine pronto para que puedas descansar."
     },
     "mauricio": {
         "name": "Mauricio Cerda",
         "company": "Melón",
-        "sentence": ""
+        "sentence": "Espero que el viaje desde Chile no haya sido muy largo."
     },
     "claudia": {
         "name": "Claudia Davila",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "Espero que Tobi y Lara se lleven bien como hermanos."
     },
     "alexandra": {
         "name": "Alexandra Espichan",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "¿Todo va a estar bien? Espero que termines tu proyecto."
     },
     "kike": {
         "name": "Jorge Enrique Vicente",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "Espero que no te prohíban el acceso a Compara Bien."
     },
     "diegol": {
         "name": "Diego Mendoza",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "Espero que hayas disfrutado tus vacaciones."
     },
     "ricardito": {
         "name": "Ricardo Quiroz",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "Espero que sigas representando al Perú en competencias internacionales."
     },
     "ana": {
         "name": "Ana Alvarado",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "Espero que acabes tu tesis pronto."
     },
     "puma": {
         "name": "Ricardo Puma",
-        "company": "RIMAC Seguros",
-        "sentence": ""
+        "company": "RIMAC",
+        "sentence": "Espero que tu modelo de salud dé resultados pronto."
     },
     "luis": {
         "name": "Luis Ramirez",
         "company": "TASA",
-        "sentence": ""
+        "sentence": "Espero que el mar de oportunidades de TASA sea cada vez más grande."
     }
 }
