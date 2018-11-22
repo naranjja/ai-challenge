@@ -5,10 +5,7 @@ import datetime
 import logging
 import pygame
 
-try:
-    from FaceClassifier.detect_in_image import *
-except ModuleNotFoundError:
-    from src.FaceClassifier.detect_in_image import *
+from FaceClassifier.detect_in_image import *
 
 
 def find_face():

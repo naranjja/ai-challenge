@@ -1,29 +1,38 @@
 import tensorflow as tf
 import numpy as np
+
 import scipy
-import cv2
-import os
-from os.path import join as pjoin
 import pickle
 import logging
+import cv2
+import os
 
+execution_path = None
 try:
     from FaceClassifier import detect_face
     from FaceClassifier import facenet
+    execution_path = "./FaceClassifier"  # from src
 except ModuleNotFoundError:
-    from src.FaceClassifier import detect_face
-    from src.FaceClassifier import facenet
+    import detect_face
+    import facenet
+    execution_path = "."  # locally
+
 
 def classify_face(face):
     logging.info("\n- Classifying face...")
+
+    # disable tf logging
+    os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
+    
     with tf.Graph().as_default():
         gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.6)
         sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
+        
         with sess.as_default():
-            pnet, rnet, onet = detect_face.create_mtcnn(sess, "./FaceClassifier/d_npy")
+            pnet, rnet, onet = detect_face.create_mtcnn(sess, f"{execution_path}/d_npy")            
             
             minsize = 20  # minimum size of face
-            threshold = [0.6, 0.7, 0.7]  # three steps"s threshold
+            threshold = [0.6, 0.7, 0.7]  # three steps threshold
             factor = 0.709  # scale factor
             margin = 44
             frame_interval = 3
@@ -31,11 +40,11 @@ def classify_face(face):
             image_size = 182
             input_image_size = 160
             
-            HumanNames = os.listdir("./FaceClassifier/input_dir")
-            HumanNames.sort()
+            names = os.listdir(f"{execution_path}/input_dir")
+            names.sort()
 
-            logging.debug("Loading feature extraction model")
-            modeldir = "./FaceClassifier/pre_model/20180408-102900.pb"
+            logging.info("- Loading feature extraction model...")
+            modeldir = f"{execution_path}/pre_model/20180408-102900.pb"
             facenet.load_model(modeldir)
 
             images_placeholder = tf.get_default_graph().get_tensor_by_name("input:0")
@@ -43,11 +52,13 @@ def classify_face(face):
             phase_train_placeholder = tf.get_default_graph().get_tensor_by_name("phase_train:0")
             embedding_size = embeddings.get_shape()[1]
 
-            classifier_filename = "./FaceClassifier/my_class/my_classifier.pkl"
+            classifier_filename = f"{execution_path}/my_class/my_classifier.pkl"
             classifier_filename_exp = os.path.expanduser(classifier_filename)
-            with open(classifier_filename_exp, "rb") as infile:
-                (model, class_names) = pickle.load(infile)
+            
+            with open(classifier_filename_exp, "rb") as f:
+                (model, class_names) = pickle.load(f)
                 logging.debug(f"Classifier filename: {classifier_filename_exp}")
+                f.close()
 
             logging.debug("Starting recognition...")
 
@@ -56,20 +67,20 @@ def classify_face(face):
             frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
             frame = frame[:, :, 0:3]
             bounding_boxes, _ = detect_face.detect_face(frame, minsize, pnet, rnet, onet, threshold, factor)
-            logging.debug("bounding",bounding_boxes)
-            nrof_faces = bounding_boxes.shape[0]
-            logging.debug("Detected_FaceNum: %d" % nrof_faces)
+            logging.debug("bounding", bounding_boxes)
+            num_faces = bounding_boxes.shape[0]
+            logging.debug("Detected_FaceNum: %d" % num_faces)
 
-            if nrof_faces > 0:
+            if num_faces > 0:
                 det = bounding_boxes[:, 0:4]
                 img_size = np.asarray(frame.shape)[0:2]
 
                 cropped = []
                 scaled = []
                 scaled_reshape = []
-                bb = np.zeros((nrof_faces,4), dtype=np.int32)
+                bb = np.zeros((num_faces,4), dtype=np.int32)
 
-                for i in range(nrof_faces):
+                for i in range(num_faces):
                     emb_array = np.zeros((1, embedding_size))
 
                     bb[i][0] = det[i][0]
@@ -92,8 +103,7 @@ def classify_face(face):
                     feed_dict = {images_placeholder: scaled_reshape[i], phase_train_placeholder: False}
                     emb_array[0, :] = sess.run(embeddings, feed_dict=feed_dict)
                     predictions = model.predict_proba(emb_array)
-                    #print("Predictions")
-                    #print(predictions)
+
                     best_class_indices = np.argmax(predictions, axis=1)
                     logging.debug("Best class indice")
                     logging.debug(best_class_indices)
@@ -108,17 +118,17 @@ def classify_face(face):
                     #print("result: ", best_class_indices[0])
                     #print(best_class_indices)
                     val = int(best_class_indices)
-                    for H_i in HumanNames:
+                    for H_i in names:
                         #print(H_i)
-                        if HumanNames[best_class_indices[0]] == H_i:
-                            result_names = HumanNames[best_class_indices[0]]
+                        if names[best_class_indices[0]] == H_i:
+                            result_names = names[best_class_indices[0]]
                             cv2.putText(frame, result_names, (text_x, text_y), cv2.FONT_HERSHEY_COMPLEX_SMALL,
                                         1, (0, 0, 255), thickness=1, lineType=4)
                             # cv2.putText(frame, str, ("", text_fps_y),cv2.FONT_HERSHEY_COMPLEX_SMALL, 
                             #             1, (0, 0, 0), thickness=1, lineType=2)
-                            cv2.imwrite("salida.jpg", frame)
+                            cv2.imwrite("output.jpg", frame)
                     try:
-                        _id = HumanNames[val].lower()
+                        _id = names[val].lower()
                         logging.info(f"- Found: {_id}")
                         return _id
                     except KeyError:
@@ -129,4 +139,4 @@ def classify_face(face):
                 return "unknown"
 
 if __name__ == "__main__":
-    classify_face("xdd.jpg")
+    classify_face("./xdd.jpg")
