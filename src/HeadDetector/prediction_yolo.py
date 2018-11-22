@@ -1,6 +1,4 @@
 import numpy as np
-import argparse
-import os
 import cv2
 import logging
 import json
@@ -25,8 +23,9 @@ weights_path = f'{execution_path}/model.h5'
 image_path   = f'{execution_path}/image_original.jpg'
 
 def yolo_initialization():
-	with open(config_path) as config_buffer:	
-		config = json.load(config_buffer)
+	with open(config_path) as f:	
+		config = json.load(f)
+		f.close()
 
 	###############################
 	#   Make the model 
