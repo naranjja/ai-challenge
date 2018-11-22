@@ -10,8 +10,8 @@ from keras.applications.resnet50 import ResNet50
 
 execution_path = None
 try:
-	from HeadDetector.utils import draw_boxes
-	execution_path = "./HeadDetector"  # from src
+	from FaceDetector.utils import draw_boxes
+	execution_path = "./FaceDetector"  # from src
 except ModuleNotFoundError:
 	from utils import draw_boxes
 	execution_path = "."  # locally

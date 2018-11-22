@@ -5,7 +5,7 @@ import datetime
 import logging
 import pygame
 
-from HeadDetector.prediction_yolo import *
+from FaceDetector.prediction_yolo import *
 from FaceClassifier.detect_in_image import *
 
 
@@ -47,13 +47,13 @@ def play_audio(_id):
 
 
 def main():
-    names = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
+    people = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
 
     face = find_face()
     _id = classify_face(face)
 
     info = None
-    try: info = names[_id]
+    try: info = people[_id]
     except KeyError: 
         logging.error("Face didn't match something that we know.")
         _id = "unknown"

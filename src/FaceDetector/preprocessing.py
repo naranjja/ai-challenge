@@ -8,7 +8,7 @@ from keras.utils import Sequence
 import xml.etree.ElementTree as ET
 
 try:
-    from HeadDetector.utils import BoundBox, bbox_iou
+    from FaceDetector.utils import BoundBox, bbox_iou
 except ModuleNotFoundError:
     from utils import BoundBox, bbox_iou
 

@@ -4,6 +4,7 @@ import numpy as np
 import scipy
 import pickle
 import logging
+import json
 import cv2
 import os
 
@@ -40,8 +41,8 @@ def classify_face(face):
             image_size = 182
             input_image_size = 160
             
-            names = os.listdir(f"{execution_path}/input_dir")
-            names.sort()
+            people = json.loads(open(f"{execution_path}/../../data/names.json", "r", encoding="utf-8").read())
+            names = list(people.keys())
 
             logging.info("- Loading feature extraction model...")
             modeldir = f"{execution_path}/pre_model/20180408-102900.pb"

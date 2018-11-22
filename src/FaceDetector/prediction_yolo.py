@@ -6,10 +6,10 @@ import operator
 
 execution_path = None
 try:
-	from HeadDetector.preprocessing import parse_annotation
-	from HeadDetector.utils import draw_boxes
-	from HeadDetector.frontend import YOLO
-	execution_path = "./HeadDetector"  # from src
+	from FaceDetector.preprocessing import parse_annotation
+	from FaceDetector.utils import draw_boxes
+	from FaceDetector.frontend import YOLO
+	execution_path = "./FaceDetector"  # from src
 except ModuleNotFoundError:
 	from preprocessing import parse_annotation
 	from utils import draw_boxes
