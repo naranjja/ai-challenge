@@ -5,7 +5,7 @@ import datetime
 import logging
 import pygame
 
-from FaceDetector.prediction_yolo import *
+from HeadDetector.prediction_yolo import *
 from FaceClassifier.detect_in_image import *
 
 
@@ -49,8 +49,8 @@ def play_audio(_id):
 def main():
     people = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
 
-    face = find_face()
-    _id = classify_face(face)
+    head = find_head()
+    _id = classify_face(head)
 
     info = None
     try: info = people[_id]

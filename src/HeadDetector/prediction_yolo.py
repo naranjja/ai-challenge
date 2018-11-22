@@ -7,10 +7,10 @@ import threading
 
 execution_path = None
 try:
-	from FaceDetector.preprocessing import parse_annotation
-	from FaceDetector.utils import draw_boxes
-	from FaceDetector.frontend import YOLO
-	execution_path = "./FaceDetector"  # from src
+	from HeadDetector.preprocessing import parse_annotation
+	from HeadDetector.utils import draw_boxes
+	from HeadDetector.frontend import YOLO
+	execution_path = "./HeadDetector"  # from src
 except ModuleNotFoundError:
 	from preprocessing import parse_annotation
 	from utils import draw_boxes
@@ -83,8 +83,8 @@ def camera_thread():
 			break
 
 
-def find_face():
-	logging.info("\n- Finding face...")
+def find_head():
+	logging.info("\n- Finding heads...")
 
 	global should_camera_stop
 	should_camera_stop = True
@@ -93,7 +93,7 @@ def find_face():
 	t = threading.Thread(target=camera_thread)
 	t.start()
 
-	found_face = False
+	found_head = False
 	while True:
 		try:
 			image_original = cv2.imread(image_path)
@@ -104,7 +104,7 @@ def find_face():
 			try:
 				box_index = max(areas.items(), key=operator.itemgetter(1))[0]
 				logging.debug(f"- Found a head!")
-				found_face = True
+				found_head = True
 			except:
 				logging.debug("No head found.")
 			
@@ -122,8 +122,8 @@ def find_face():
 
 			output_path = f"{execution_path}/output.jpg"
 			
-			if found_face:
-				logging.info(f"- Found a face!")
+			if found_head:
+				logging.info(f"- Found a head!")
 				cv2.imwrite(output_path, crop_img)
 				should_camera_stop = False
 				return output_path
@@ -136,11 +136,11 @@ def find_face():
 			time.sleep(0.1)
 			
 		except:
-			logging.debug("No face found.")
+			logging.debug("No heads found.")
 			continue
 	
 
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.INFO, format="%(message)s")
-	result = find_face()
+	result = find_head()
 	logging.info(result)

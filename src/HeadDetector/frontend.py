@@ -11,9 +11,9 @@ from keras.optimizers import SGD, Adam, RMSprop
 from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
 
 try:
-    from FaceDetector.preprocessing import BatchGenerator
-    from FaceDetector.utils import decode_netout, compute_overlap, compute_ap
-    from FaceDetector.backend import TinyYoloFeature, FullYoloFeature, MobileNetFeature, SqueezeNetFeature, Inception3Feature, VGG16Feature, ResNet50Feature
+    from HeadDetector.preprocessing import BatchGenerator
+    from HeadDetector.utils import decode_netout, compute_overlap, compute_ap
+    from HeadDetector.backend import TinyYoloFeature, FullYoloFeature, MobileNetFeature, SqueezeNetFeature, Inception3Feature, VGG16Feature, ResNet50Feature
 except ModuleNotFoundError:
     from preprocessing import BatchGenerator
     from utils import decode_netout, compute_overlap, compute_ap
