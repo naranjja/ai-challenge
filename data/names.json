@@ -12,7 +12,7 @@
         "name": "Mario Matuk"
     },
     "gianflavio": {
-        "name": "Gianflavio Carosi"
+        "name": "Gianflavio Carozzi"
     },
     "dereck": {
         "name": "Dereck Forsyth"
@@ -22,6 +22,9 @@
     },
     "mario": {
         "name": "Mario Brescia"
+    },
+    "fortunato": {
+        "name": "Fortunato Brescia"
     },
     "pedro": {
         "name": "Pedro Brescia"
@@ -42,10 +45,8 @@
         "name": "Miguel Paredes"
     },
     "jose": {
-        "name": "Jose Naranjo"
-    },
-    "joseferreyros": {
-        "name": "Jose Ferreyros"
+        "name": "Jose Naranjo",
+        "sentence": "¡Buenas tardes Jose! Espero que todo te esté yendo bien con tus chatbots."
     },
     "jenny": {
         "name": "Jenny Vega"
@@ -77,8 +78,8 @@
     "alexandra": {
         "name": "Alexandra Espichan"
     },
-    "jorge": {
-        "name": "Jorge Vicente"
+    "kike": {
+        "name": "Jorge Enrique Vicente"
     },
     "diegol": {
         "name": "Diego Mendoza"
