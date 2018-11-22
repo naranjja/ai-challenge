@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-camera_index = 1  # 0: built-in, 1: external
+camera_index = 0  # 0: built-in, 1: external
 cap = cv2.VideoCapture(camera_index)
 
 while True:

@@ -3,6 +3,7 @@ import cv2
 import logging
 import json
 import operator
+import threading
 
 execution_path = None
 try:
@@ -61,57 +62,85 @@ def maximum_area(image_original, boxes):
 		
 	return areas
 	
-def find_face():
-	logging.info("\n- Finding face...")
-	yolo = yolo_initialization()
+
+def camera_thread():
 	camera_index = 0  # 0: built-in, 1: external
 	cap = cv2.VideoCapture(camera_index)
-
-	found_face = False
 	while True:
 		is_correctly_setup, frame = cap.read()  # get next frame
 
 		cv2.imshow("frame", frame)  # show frame on popup window
 		cv2.imwrite(image_path, frame)
-		#cv2.waitKey(100)
 		
-		image_original = cv2.imread(image_path)
-		boxes = yolo.predict(image_original)
-		#image = draw_boxes(image_original, boxes, config['model']['labels'])
+		cv2.waitKey(10)
 
-		areas = maximum_area(image_original, boxes)
-		
-		try:
-			box_index = max(areas.items(), key=operator.itemgetter(1))[0]
-			logging.info(f"- Found a head!")
-			found_face = True
-		except:
-			# box_index sale errado, por estamos en el catch
-			continue
-
-		image_h, image_w, _ = image_original.shape
-		xmin = int(boxes[box_index].xmin*image_w)
-		ymin = int(boxes[box_index].ymin*image_h)
-		xmax = int(boxes[box_index].xmax*image_w)
-		ymax = int(boxes[box_index].ymax*image_h)
-		crop_img = image_original[ymin:ymax, xmin:xmax]
-
-		output_path = f"{execution_path}/output.jpg"
-		cv2.imwrite(output_path, crop_img)
-
-		if found_face:
-			logging.info(f"- Found a face!")
+		if not should_camera_stop:
 			cap.release()  # kill capture
 			cv2.destroyAllWindows()  # kill windows
-			return output_path
-		
+			break
+
 		if cv2.waitKey(1) & 0xFF == ord("q"):  # if user wants to close
-			cap.release()  # kill capture
-			cv2.destroyAllWindows()  # kill windows
-			logging.warn("Process stopped.")
-			return
+			break
+
+
+def find_face():
+	logging.info("\n- Finding face...")
+
+	global should_camera_stop
+	should_camera_stop = True
+
+	yolo = yolo_initialization()
+	t = threading.Thread(target=camera_thread)
+	t.start()
+
+	found_face = False
+	while True:
+		try:
+			image_original = cv2.imread(image_path)
+			boxes = yolo.predict(image_original)
+			#image = draw_boxes(image_original, boxes, config['model']['labels'])
+
+			areas = maximum_area(image_original, boxes)
+			try:
+				box_index = max(areas.items(), key=operator.itemgetter(1))[0]
+				logging.debug(f"- Found a head!")
+				found_face = True
+			except:
+				logging.debug("No head found.")
+			
+			logging.debug('Area de foto:', areas[box_index])
+			if areas[box_index] < 142 ** 2:
+				logging.debug("Face too small.")
+				continue
+
+			image_h, image_w, _ = image_original.shape
+			xmin = int(boxes[box_index].xmin*image_w)
+			ymin = int(boxes[box_index].ymin*image_h)
+			xmax = int(boxes[box_index].xmax*image_w)
+			ymax = int(boxes[box_index].ymax*image_h)
+			crop_img = image_original[ymin:ymax, xmin:xmax]
+
+			output_path = f"{execution_path}/output.jpg"
+			
+			if found_face:
+				logging.info(f"- Found a face!")
+				cv2.imwrite(output_path, crop_img)
+				should_camera_stop = False
+				return output_path
+			
+			if cv2.waitKey(1) & 0xFF == ord("q"):  # if user wants to close
+				should_camera_stop = False
+				logging.warn("Process stopped.")
+				return
+			
+			time.sleep(0.1)
+			
+		except:
+			logging.debug("No face found.")
+			continue
 	
 
 if __name__ == '__main__':
 	logging.basicConfig(level=logging.INFO, format="%(message)s")
-	find_face()
+	result = find_face()
+	logging.info(result)

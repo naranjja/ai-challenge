@@ -69,7 +69,12 @@ def classify_face(face):
             except AttributeError:
                 logging.debug("No face found!")
                 
-            frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
+            try:
+                frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
+            except:
+                logging.debug("Found a head, but not a face!")
+                return "unknown"
+
             frame = frame[:, :, 0:3]
             bounding_boxes, _ = detect_face.detect_face(frame, minsize, pnet, rnet, onet, threshold, factor)
             logging.debug("bounding", bounding_boxes)
