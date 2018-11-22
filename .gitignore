@@ -6,6 +6,7 @@ env
 
 # binaries
 *.mp3
+*.h5
 
 # models
 src/FaceClassifier/pre_model/*

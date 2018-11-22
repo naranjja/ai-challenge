@@ -5,14 +5,8 @@ import datetime
 import logging
 import pygame
 
+from HeadDetector.prediction_yolo import *
 from FaceClassifier.detect_in_image import *
-
-
-def find_face():
-    logging.info("\n- Finding face...")
-    # TODO
-    logging.info("- Face found correctly.")
-    return "./FaceClassifier/xdd.jpg"  # testing
 
 
 def get_time_of_day():

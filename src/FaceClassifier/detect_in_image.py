@@ -63,7 +63,11 @@ def classify_face(face):
             logging.debug("Starting recognition...")
 
             frame = cv2.imread(face)
-            logging.debug("size image1: ", frame.shape)
+            try:
+                logging.debug("size image1: ", frame.shape)
+            except AttributeError:
+                logging.debug("No face found!")
+                
             frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)
             frame = frame[:, :, 0:3]
             bounding_boxes, _ = detect_face.detect_face(frame, minsize, pnet, rnet, onet, threshold, factor)
@@ -139,4 +143,5 @@ def classify_face(face):
                 return "unknown"
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
     classify_face("./xdd.jpg")
