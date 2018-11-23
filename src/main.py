@@ -51,7 +51,7 @@ def play_audio(file_path, seconds=15.0):
 
 
 def main(cheat=None):
-    play_audio(f"./../data/sounds/loading.mp3", 0.1)
+    # play_audio(f"./../data/sounds/loading.mp3", 0.1)
     people = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
     camera_index = 1  # 0: built-in, 1: external
 
