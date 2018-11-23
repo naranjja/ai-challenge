@@ -78,7 +78,7 @@ while True:
 
 			# text = "{}: {:.2f}%".format(name, proba * 100)
 			# fake xd
-			text = "{}: {:.2f}%".format(name, proba * 100 + 20)
+			text = "{}: {:.2f}%".format(name, proba * 100)
 			y = startY - 10 if startY - 10 > 10 else startY + 10
 			cv2.rectangle(frame, (startX, startY), (endX, endY),
 				(0, 0, 255), 2)

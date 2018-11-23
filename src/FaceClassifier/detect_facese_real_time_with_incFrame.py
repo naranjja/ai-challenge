@@ -19,10 +19,12 @@ import math
 import pickle
 from sklearn.svm import SVC
 from sklearn.externals import joblib
+import json
+from imutils.video import VideoStream
 
 print('Creating networks and loading parameters')
 with tf.Graph().as_default():
-    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.6)
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.7)
     sess = tf.Session(config=tf.ConfigProto(gpu_options=gpu_options, log_device_placement=False))
     with sess.as_default():
         pnet, rnet, onet = detect_face.create_mtcnn(sess, './d_npy')
@@ -53,18 +55,21 @@ with tf.Graph().as_default():
             (model, class_names) = pickle.load(infile)
             print('load classifier file-> %s' % classifier_filename_exp)
 
-        video_capture = cv2.VideoCapture(0)
+        #video_capture = cv2.VideoCapture(0)
         c = 0
         counter = 1
         # #video writer
-        fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-        out = cv2.VideoWriter('3F_0726.avi', fourcc, fps=14, frameSize=(640,480))
+        #fourcc = cv2.VideoWriter_fourcc(*'DIVX')
+        #out = cv2.VideoWriter('3F_0726.avi', fourcc, fps=14, frameSize=(640,480))
 
         print('Start Recognition!')
         prevTime = 0
+
+        vs = VideoStream(src=0).start()
         while True:
-            ret, frame = video_capture.read()
-            frame = cv2.resize(frame, (0,0), fx=0.5, fy=0.5)    #resize frame (optional)
+            #ret, frame = video_capture.read()
+            frame = vs.read()
+            frame = cv2.resize(frame, (600,600), fx=0.5, fy=0.5)    #resize frame (optional)
 
             curTime = time.time()+1    # calc fps
             timeF = frame_interval
@@ -128,11 +133,15 @@ with tf.Graph().as_default():
                             print('result: ', best_class_indices[0])
                             #print(best_class_indices)
                             #print(HumanNames)
+                            with open('./../../data/names.json', encoding="utf8") as json_file:
+                                data = json.load(json_file)
                             for H_i in HumanNames:
                                 #print(H_i)
                                 if HumanNames[best_class_indices[0]] == H_i:
                                     result_names = HumanNames[best_class_indices[0]]
-                                    cv2.putText(frame, result_names, (text_x, text_y), cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                                    result_names = result_names.lower()
+                                    texto_final = data[result_names]["name"] + ", " + data[result_names]["company"]
+                                    cv2.putText(frame, texto_final, (text_x, text_y), cv2.FONT_HERSHEY_COMPLEX_SMALL,
                                                 1, (0, 0, 255), thickness=1, lineType=2)
 
                     else:
@@ -144,15 +153,15 @@ with tf.Graph().as_default():
                 str = 'FPS: %2.3f' % fps
                 text_fps_x = len(frame[0]) - 150
                 text_fps_y = 20
-                cv2.putText(frame, str, (text_fps_x, text_fps_y),
-                            cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 0), thickness=1, lineType=2)
+                # cv2.putText(frame, str, (text_fps_x, text_fps_y),
+                #             cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, (0, 0, 0), thickness=1, lineType=2)
                 # c+=1
                 cv2.imshow('Video', frame)
 
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
 
-        video_capture.release()
+        #video_capture.release()
         # #video writer
-        out.release()
+        #out.release()
         cv2.destroyAllWindows()
