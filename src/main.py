@@ -53,31 +53,31 @@ def play_audio(file_path, seconds=15.0):
 def main(cheat=None):
     # play_audio(f"./../data/sounds/loading.mp3", 0.1)
     people = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
-    camera_index = 1  # 0: built-in, 1: external
+    camera_index = 0  # 0: built-in, 1: external
 
     head = find_head(camera_index)
 
-    play_audio(f"./../data/sounds/match.mp3", 0.1)
-    _id = classify_face(head)
+    # play_audio(f"./../data/sounds/match.mp3", 0.1)
+    # _id = classify_face(head)
 
-    if cheat:
-        _id = cheat
+    # if cheat:
+    #     _id = cheat
 
-    info = None
-    try:
-        info = people[_id]
-    except KeyError:
-        logging.error("Face didn't match someone that we know.")
-        _id = "unknown"
+    # info = None
+    # try:
+    #     info = people[_id]
+    # except KeyError:
+    #     logging.error("Face didn't match someone that we know.")
+    #     _id = "unknown"
 
-    sentence = build_sentence(info)
+    # sentence = build_sentence(info)
 
-    if _id == "melero":
-        save_audio(_id, sentence, spain=True)
-    else:
-        save_audio(_id, sentence)
+    # if _id == "melero":
+    #     save_audio(_id, sentence, spain=True)
+    # else:
+    #     save_audio(_id, sentence)
 
-    play_audio(f"./../data/greetings/{_id}.mp3", 15.0)
+    # play_audio(f"./../data/greetings/{_id}.mp3", 15.0)
 
 
 if __name__ == "__main__":

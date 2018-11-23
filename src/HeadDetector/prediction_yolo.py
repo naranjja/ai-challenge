@@ -120,7 +120,7 @@ def find_head(camera_index):
                 logging.debug("No head found.")
 
             logging.debug("Area de foto:", areas[box_index])
-            if areas[box_index] < 140 ** 2:
+            if areas[box_index] < 100 ** 2:
                 logging.debug("Face too small.")
                 continue
 
