@@ -128,24 +128,27 @@ def classify_face(face):
                     val = int(best_class_indices[0])
                     for H_i in names:
                         # print(H_i)
-                        if names[best_class_indices[0]] == H_i:
-                            result_names = names[best_class_indices[0]]
-                            cv2.putText(frame, result_names, (text_x, text_y), cv2.FONT_HERSHEY_COMPLEX_SMALL,
-                                        1, (0, 0, 255), thickness=1, lineType=4)
-                            # cv2.putText(frame, str, ("", text_fps_y),cv2.FONT_HERSHEY_COMPLEX_SMALL, 
-                            #             1, (0, 0, 0), thickness=1, lineType=2)
-                            try:
-                                os.unlink("result.jpg")
-                            except FileNotFoundError:
-                                pass
-                            cv2.imwrite("result.jpg", frame)
+                        try:
+                            if names[best_class_indices[0]] == H_i:
+                                result_names = names[best_class_indices[0]]
+                                cv2.putText(frame, result_names, (text_x, text_y), cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                                            1, (0, 0, 255), thickness=1, lineType=4)
+                                # cv2.putText(frame, str, ("", text_fps_y),cv2.FONT_HERSHEY_COMPLEX_SMALL, 
+                                #             1, (0, 0, 0), thickness=1, lineType=2)
+                                try:
+                                    os.unlink("result.jpg")
+                                except FileNotFoundError:
+                                    pass
+                                cv2.imwrite("result.jpg", frame)
+                        except:
+                            pass
                     _id = None
                     try:
                         _id = names[val].lower()
                         logging.info(f"- Found: {_id}")
                         return _id
-                    except KeyError:
-                        logging.warning(f"- Could not find class {_id} in list of names.")
+                    except:
+                        logging.warning(f"- Could not find class {_id} (position {val}) in list of names.")
                         return "unknown"
             else:
                 logging.warning(f"- Could not classify face.")
