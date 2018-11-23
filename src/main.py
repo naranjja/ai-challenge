@@ -24,7 +24,7 @@ def build_sentence(info):
     elif info:
         return "¡{} {name}! {sentence}".format(get_time_of_day(), **info)
     else:
-        return "¡{} persona desconocida! No te he podido reconocer correctamente.".format(get_time_of_day())
+        return "{}. No he podido reconocer tu rostro. ¿Es la primera vez que vienes a BREIN?".format(get_time_of_day())
 
 
 def save_audio(_id, sentence, spain=False):
@@ -40,27 +40,30 @@ def save_audio(_id, sentence, spain=False):
     return True
 
 
-def play_audio(_id):
+def play_audio(file_path, seconds=15.0):
     logging.info("\n- Playing...")
     pygame.mixer.init()
-    pygame.mixer.music.load(f"./../data/greetings/{_id}.mp3")
+    pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
-    time.sleep(15)
+    time.sleep(seconds)
     logging.info("- Finished playing.")
 
 
 def main():
+    play_audio(f"./../data/sounds/loading.mp3", 0.1)
     people = json.loads(open("./../data/names.json", "r", encoding="utf-8").read())
     camera_index = 1  # 0: built-in, 1: external
 
     head = find_head(camera_index)
+
+    play_audio(f"./../data/sounds/match.mp3", 0.1)
     _id = classify_face(head)
 
     info = None
     try:
         info = people[_id]
     except KeyError:
-        logging.error("Face didn't match something that we know.")
+        logging.error("Face didn't match someone that we know.")
         _id = "unknown"
 
     sentence = build_sentence(info)
@@ -70,7 +73,7 @@ def main():
     else:
         save_audio(_id, sentence)
 
-    play_audio(_id)
+    play_audio(f"./../data/greetings/{_id}.mp3", 15.0)
 
 
 if __name__ == "__main__":
