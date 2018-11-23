@@ -36,14 +36,14 @@ recognizer = pickle.loads(open(args["recognizer"], "rb").read())
 le = pickle.loads(open(args["le"], "rb").read())
 
 print("[INFO] starting video stream...")
-vs = VideoStream(src=1).start()
+vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 fps = FPS().start()
 
 while True:
 	frame = vs.read()
-	frame = imutils.resize(frame, width=600)
+	frame = imutils.resize(frame, width=1200)
 	(h, w) = frame.shape[:2]
 
 	imageBlob = cv2.dnn.blobFromImage(
