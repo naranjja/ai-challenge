@@ -18,6 +18,7 @@ h5py==2.8.0
 html5lib==0.9999999
 idna==2.7
 imgaug==0.2.6
+imutils==0.5.1
 Keras==2.2.4
 Keras-Applications==1.0.6
 Keras-Preprocessing==1.0.5
