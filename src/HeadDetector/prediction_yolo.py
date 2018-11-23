@@ -103,7 +103,7 @@ def find_head(camera_index):
     t = threading.Thread(target=lambda: camera_thread(camera_index))
     t.start()
 
-    found_head = False
+    found_head_counter = 0
     while True:
         try:
             image_original = cv2.imread(image_path)
@@ -115,7 +115,8 @@ def find_head(camera_index):
             try:
                 box_index = max(areas.items(), key=operator.itemgetter(1))[0]
                 logging.debug(f"- Found a head!")
-                found_head = True
+                found_head_counter += 1
+                logging.info(f"Frame: {found_head_counter}")
             except:
                 logging.debug("No head found.")
 
@@ -131,11 +132,12 @@ def find_head(camera_index):
             ymax = int(boxes[box_index].ymax * image_h)
             crop_img = image_original[ymin:ymax, xmin:xmax]
 
-            if found_head:
+            if found_head_counter >= 5:
                 logging.info(f"- Found a head!")
                 cv2.imwrite(output_path, crop_img)
                 should_camera_stop = False
                 return output_path
+            else: continue
 
             if cv2.waitKey(1) & 0xFF == ord("q"):  # if user wants to close
                 should_camera_stop = False
