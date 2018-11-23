@@ -132,10 +132,9 @@ def find_head(camera_index):
             ymax = int(boxes[box_index].ymax * image_h)
             crop_img = image_original[ymin:ymax, xmin:xmax]
 
-            if found_head_counter >= 5:
+            if found_head_counter >= 2:
                 logging.info(f"- Found a head!")
                 cv2.imwrite(output_path, crop_img)
-                should_camera_stop = False
                 return output_path
             else: continue
 
