@@ -1,53 +1,8 @@
 {
-    "melero": {
-        "name": "Jorge Melero",
-        "company": "Intursa",
-        "sentence": "Espero que nuestros hoteles estén siempre llenos de personas."
-    },
-    "fernando": {
-        "name": "Fernando Ríos",
-        "company": "RIMAC",
-        "sentence": "Espero que sigamos creciendo y cuidando a los peruanos como siempre."
-    },
-    "rodrigo": {
-        "name": "Rodrigo Mejía",
-        "company": "Croma",
-        "sentence": "Espero que analytics cambie la forma cómo funciona el mercado de pinturas."
-    },
-    "matuk": {
-        "name": "Mario Matuk",
-        "company": "EXSA",
-        "sentence": "Espero que nuestros clientes estén siempre satisfechos con nuestro trabajo."
-    },
-    "gianflavio": {
-        "name": "Gianflavio Carosi",
-        "company": "AESA",
-        "sentence": "Espero que sigamos siendo líderes en servicios de infrastructura y minería."
-    },
     "dereck": {
         "name": "Dereck Forsyth",
         "company": "TASA",
         "sentence": "¿Hace cuánto que no has comido una Omega Burguer? Creo que ya toca."
-    },
-    "alex": {
-        "name": "Alex Fort",
-        "company": null,
-        "sentence": "Espero que veas el potencial de tu equipo, y de lo que es capaz de hacer en menos de 48 horas."
-    },
-    "mario": {
-        "name": "Mario Bresia",
-        "company": null,
-        "sentence": "Espero que veas el potencial de tu equipo, y de lo que es capaz de hacer en menos de 48 horas."
-    },
-    "fortunato": {
-        "name": "Fortunato Bresia",
-        "company": null,
-        "sentence": "Espero que veas el potencial de tu equipo, y de lo que es capaz de hacer en menos de 48 horas."
-    },
-    "pedro": {
-        "name": "Pedro Bresia",
-        "company": null,
-        "sentence": "Espero que veas el potencial de tu equipo, y de lo que es capaz de hacer en menos de 48 horas."
     },
     "jaime": {
         "name": "Jaime Aráoz",
