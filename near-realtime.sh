@@ -1,0 +1,1 @@
+cd src/FaceClassifier && python3 detect_facese_real_time_with_incFrame.py

@@ -65,7 +65,7 @@ with tf.Graph().as_default():
         print('Start Recognition!')
         prevTime = 0
 
-        vs = VideoStream(src=0).start()
+        vs = VideoStream(src=1).start()
         while True:
             #ret, frame = video_capture.read()
             frame = vs.read()
