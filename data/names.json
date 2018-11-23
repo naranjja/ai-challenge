@@ -4,30 +4,15 @@
         "company": "TASA",
         "sentence": "¿Hace cuánto que no has comido una Omega Burguer? Creo que ya toca."
     },
-    "jaime": {
-        "name": "Jaime Aráoz",
-        "company": "Corporación BRECA",
-        "sentence": "Espero que siempre nos apoyes en transformar al grupo a través de la innovación."
-    },
     "alvaro": {
         "name": "Álvaro Delgado-Aparicio",
         "company": "BREIN",
         "sentence": "Espero que estés orgulloso de las cosas tan maravillosas que hace tu equipo."
     },
-    "cinthia": {
-        "name": "Cinthia Wicht",
-        "company": "BREIN",
-        "sentence": "Espero que el festival de innovación sea un éxito."
-    },
     "carlos": {
         "name": "Carlos Gamero",
         "company": "BREIN",
         "sentence": "Espero que todavía tengamos presupuesto para seguir funcionando."
-    },
-    "miguel": {
-        "name": "Miguel Paredes",
-        "company": "RIMAC",
-        "sentence": "Espero que ahora que estás en Rimac todavía nos visites."
     },
     "jose": {
         "name": "Jose Naranjo",
@@ -88,11 +73,6 @@
         "name": "Jorge Enrique Vicente",
         "company": "RIMAC",
         "sentence": "Espero que no te prohíban el acceso a Compara Bien."
-    },
-    "diegol": {
-        "name": "Diego Mendoza",
-        "company": "RIMAC",
-        "sentence": "Espero que hayas disfrutado tus vacaciones."
     },
     "ricardito": {
         "name": "Ricardo Quirós",
