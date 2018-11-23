@@ -24,7 +24,7 @@ def build_sentence(info):
     elif info:
         return "¡{} {name}! {sentence}".format(get_time_of_day(), **info)
     else:
-        return "{}. No he podido reconocer tu rostro. ¿Es la primera vez que vienes a BREIN?".format(get_time_of_day())
+        return "{}. No he podido reconocer tu rostro. Es la primera vez que vienes a BREIN?".format(get_time_of_day())
 
 
 def save_audio(_id, sentence, spain=False):
