@@ -18,7 +18,7 @@ with tf.Graph().as_default():
 
     with tf.Session() as sess:
 
-        datadir = './out_dir'
+        datadir = './../../data/faces/output_dir'
         dataset = facenet.get_dataset(datadir)
         paths, labels = facenet.get_image_paths_and_labels(dataset)
         print('Number of classes: %d' % len(dataset))

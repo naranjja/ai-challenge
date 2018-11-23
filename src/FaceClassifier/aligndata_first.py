@@ -13,12 +13,12 @@ import detect_face
 import random
 from time import sleep
 
-output_dir_path = './out_dir'
+output_dir_path = './../../data/faces/output_dir'
 output_dir = os.path.expanduser(output_dir_path)
 if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-datadir = './../../data/faces/'
+datadir = './../../data/faces/input_dir'
 dataset = facenet.get_dataset(datadir)
 
 print('Creating networks and loading parameters')

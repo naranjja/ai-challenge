@@ -1,0 +1,2 @@
+./../../data/faces/output_dir\Claudia\claudia-10.png
+./../../data/faces/output_dir\Ricardito\ricardito-10.png
