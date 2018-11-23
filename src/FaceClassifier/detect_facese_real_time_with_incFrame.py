@@ -69,7 +69,7 @@ with tf.Graph().as_default():
         while True:
             #ret, frame = video_capture.read()
             frame = vs.read()
-            frame = cv2.resize(frame, (600,600), fx=0.5, fy=0.5)    #resize frame (optional)
+            frame = cv2.resize(frame, (1200,1200), fx=0.5, fy=0.5)    #resize frame (optional)
 
             curTime = time.time()+1    # calc fps
             timeF = frame_interval
@@ -141,7 +141,7 @@ with tf.Graph().as_default():
                                     result_names = HumanNames[best_class_indices[0]]
                                     result_names = result_names.lower()
                                     texto_final = data[result_names]["name"] + ", " + data[result_names]["company"]
-                                    cv2.putText(frame, texto_final, (text_x, text_y), cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                                    cv2.putText(frame, texto_final, (text_x, text_y), cv2.FONT_HERSHEY_TRIPLEX,
                                                 1, (0, 0, 255), thickness=1, lineType=2)
 
                     else:
