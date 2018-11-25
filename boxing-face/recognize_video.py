@@ -1,4 +1,6 @@
-# python3 recognize_video.py --detector face_detection_model --embedding-model openface_nn4.small2.v1.t7 --recognizer output/recognizer.pickle --le output/le.pickle
+# python3 recognize_video.py 
+# --detector face_detection_model 
+# --embedding-model openface_nn4.small2.v1.t7 --recognizer output/recognizer.pickle --le output/le.pickle
 
 from imutils.video import VideoStream
 from imutils.video import FPS
@@ -9,34 +11,24 @@ import pickle
 import time
 import cv2
 import os
+import json
 
-ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--detector", required=True,
-	help="path to OpenCV's deep learning face detector")
-ap.add_argument("-m", "--embedding-model", required=True,
-	help="path to OpenCV's deep learning face embedding model")
-ap.add_argument("-r", "--recognizer", required=True,
-	help="path to model trained to recognize faces")
-ap.add_argument("-l", "--le", required=True,
-	help="path to label encoder")
-ap.add_argument("-c", "--confidence", type=float, default=0.5,
-	help="minimum probability to filter weak detections")
-args = vars(ap.parse_args())
+min_confidence = 0.5
+info = json.loads(open(os.path.sep.join(["..", "data", "names.json"]), "rb").read())
 
 print("[INFO] loading face detector...")
-protoPath = os.path.sep.join([args["detector"], "deploy.prototxt"])
-modelPath = os.path.sep.join([args["detector"],
-	"res10_300x300_ssd_iter_140000.caffemodel"])
+protoPath = os.path.sep.join(["face_detection_model", "deploy.prototxt"])
+modelPath = os.path.sep.join(["face_detection_model", "res10_300x300_ssd_iter_140000.caffemodel"])
 detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
 print("[INFO] loading face recognizer...")
-embedder = cv2.dnn.readNetFromTorch(args["embedding_model"])
+embedder = cv2.dnn.readNetFromTorch("openface_nn4.small2.v1.t7")
 
-recognizer = pickle.loads(open(args["recognizer"], "rb").read())
-le = pickle.loads(open(args["le"], "rb").read())
+recognizer = pickle.loads(open("output/recognizer.pickle", "rb").read())
+le = pickle.loads(open("output/le.pickle", "rb").read())
 
 print("[INFO] starting video stream...")
-vs = VideoStream(src=1).start()
+vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 fps = FPS().start()
@@ -56,7 +48,7 @@ while True:
 	for i in range(0, detections.shape[2]):
 		confidence = detections[0, 0, i, 2]
 
-		if confidence > args["confidence"]:
+		if confidence > min_confidence:
 			box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
 			(startX, startY, endX, endY) = box.astype("int")
 
@@ -76,14 +68,23 @@ while True:
 			proba = preds[j]
 			name = le.classes_[j]
 
-			# text = "{}: {:.2f}%".format(name, proba * 100)
-			# fake xd
-			text = "{}: {:.2f}%".format(name, proba * 100)
+			match = info[name.lower()]
+			name = match["name"]
+			company = match["company"]
+
+			text = "{} ({}): {:.2f}%".format(name, company, proba * 100)
 			y = startY - 10 if startY - 10 > 10 else startY + 10
+			
+			red = (0, 0, 255)
+			green = (0, 255, 0)
+
+			color = red
+			if proba > 0.69:
+				color = green
 			cv2.rectangle(frame, (startX, startY), (endX, endY),
-				(0, 0, 255), 2)
+				color, 2)
 			cv2.putText(frame, text, (startX, y),
-				cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
+				cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
 
 	fps.update()
 
@@ -94,8 +95,6 @@ while True:
 		break
 
 fps.stop()
-print("[INFO] elasped time: {:.2f}".format(fps.elapsed()))
-print("[INFO] approx. FPS: {:.2f}".format(fps.fps()))
 
 cv2.destroyAllWindows()
 vs.stop()
