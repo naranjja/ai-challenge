@@ -15,7 +15,7 @@ grpcio==1.16.1
 gTTS==2.0.1
 gTTS-token==1.1.2
 h5py==2.8.0
-html5lib==0.9999999
+html5lib==0.99999999
 idna==2.7
 imgaug==0.2.6
 imutils==0.5.1
