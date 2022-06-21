@@ -25,7 +25,7 @@ Keras-Preprocessing==1.0.5
 Markdown==3.0.1
 matplotlib==2.1.2
 networkx==2.2
-numpy==1.15.4
+numpy==1.22.0
 opencv-python==3.4.3.18
 Pillow==5.3.0
 protobuf==3.6.1
